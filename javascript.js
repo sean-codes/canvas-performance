@@ -23,7 +23,7 @@ var init = function(){
       html.tests.innerHTML += `<test onclick="loadTest('${test.src}')">${test.name}</test>`
    }
 
-   setResolution('full')
+   resolution.init('full')
 }
 
 //----------------------------------------------------------------------------------------------//
@@ -39,16 +39,24 @@ var loadTest = function(src){
 //----------------------------------------------------------------------------------------------//
 //----------------------------------------| Resolution |----------------------------------------//
 //----------------------------------------------------------------------------------------------//
-var setResolution = function(choice){
-   var canvas = ctx.canvas;
-   var size = settings.resolutions[choice]
-   var width = eval(size.width)
-   var height = eval(size.height)
+var resolution = {
+   current: 'full',
+   init: function(set){
+      this.current = set
+      this.set(this.current)
+      window.addEventListener('resize', () => { this.set(this.current) })
+   },
+   set: function(choice){
+      var canvas = ctx.canvas;
+      var size = settings.resolutions[choice]
+      var width = eval(size.width)
+      var height = eval(size.height)
 
-   canvas.width = width
-   canvas.height = height
-   canvas.style.width = width + 'px'
-   canvas.style.height = height + 'px'
+      canvas.width = width
+      canvas.height = height
+      canvas.style.width = width + 'px'
+      canvas.style.height = height + 'px'
+   }
 }
 
 //----------------------------------------------------------------------------------------------//
