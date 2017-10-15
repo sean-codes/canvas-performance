@@ -64,11 +64,13 @@ var resolution = {
 //----------------------------------------------------------------------------------------------//
 var results = {
    html: document.querySelector('results'),
-   data: [
-      {name: 'fps', value: '60' }
-   ],
+   data: [],
    set: function(data){
       this.data = data
+      this.display()
+   },
+   push: function(data){
+      this.data.push(data)
       this.display()
    },
    display: function(results){

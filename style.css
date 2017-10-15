@@ -51,7 +51,7 @@ results result{
 }
 results name, results value{
    color:#FFF;
-   min-width:100px;
+   padding:10px;
    text-transform:uppercase;
    display:inline-block;
 }
