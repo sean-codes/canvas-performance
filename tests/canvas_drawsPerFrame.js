@@ -22,7 +22,7 @@ var test = {
       }
 
       // Add new positions
-      if(Math.random() < 1){
+      if(Math.random() < 0.5){
          this.addPosition()
       }
 
@@ -36,7 +36,6 @@ var test = {
       results.set([
          { name: 'fps', value: this.fps.value },
          { name: 'draws', value: this.positions.length },
-
       ])
    },
    addPosition: function(){
