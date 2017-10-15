@@ -11,22 +11,28 @@ dataUrl = imgCanvas.canvas.toDataURL(),
 imgData = document.createElement('img');
 imgData.src = dataUrl;
 
-testCanvas()
-testImg()
-testCanvasData()
+setInterval(function(){
+   results.reset()
+   setTimeout(function(){ testCanvas() }, 100)
+   setTimeout(function(){ testImg() }, 120)
+   setTimeout(function(){ testCanvasData() }, 140)
+}, 1000)
+
 function testCanvasData(){
+   var x = img.width*2
    var time = performance.now()
-   for(var i = 0; i < 10000; i++){
-      ctx.drawImage(imgData, img.width*2, 0)
+   for(var i = 0; i < 1000; i++){
+      ctx.drawImage(imgData, x, 0)
    }
 
    results.push({ name: 'Canvas Data', value: performance.now() - time })
 }
 
 function testCanvas(){
+   var x = img.width
    var time = performance.now()
-   for(var i = 0; i < 10000; i++){
-      ctx.drawImage(imgCanvas.canvas, img.width, 0)
+   for(var i = 0; i < 1000; i++){
+      ctx.drawImage(imgCanvas.canvas, x, 0)
    }
 
    results.push({ name: 'Canvas', value: performance.now() - time })
@@ -35,7 +41,7 @@ function testCanvas(){
 
 function testImg(){
    var time = performance.now()
-   for(var i = 0; i < 10000; i++){
+   for(var i = 0; i < 1000; i++){
       ctx.drawImage(img, 0, 0)
    }
 

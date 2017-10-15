@@ -78,5 +78,8 @@ var results = {
       for(var data of this.data)[
          this.html.innerHTML += `<result><name>${data.name}</name><value>${data.value}</value>`
       ]
+   },
+   reset: function(){
+      this.data = []
    }
 }
