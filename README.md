@@ -1,9 +1,8 @@
 ## canvas performance experiments
 ![example image](/example.png)
 
-live: [view experiments](https://sean-codes.github.io/canvas-performance)
+live: [view experiments](https://sean-codes.github.io/canvas-performance/index.html)
 
 ### 🔍 Findings
 
-- canvas ctx save and restore are very expensive
- 
+- canvas ctx save and restore seem to be very expensive
