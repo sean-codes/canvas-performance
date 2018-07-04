@@ -44,9 +44,9 @@ core.step = () => {
 		if(!settings.read('saveRestore')) return
 
 		core.ctx.save()
-		// core.ctx.translate(translateX, translateY)
-		// core.ctx.scale(scaleX, scaleY)
-		// core.ctx.rotate(0)
+		core.ctx.translate(translateX, translateY)
+		core.ctx.scale(scaleX, scaleY)
+		core.ctx.rotate(0)
       core.ctx.restore()
 	}
 }
