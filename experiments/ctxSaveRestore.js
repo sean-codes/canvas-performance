@@ -32,7 +32,7 @@ core.step = () => {
 	var draws = settings.read('draws')
 
 	core.debug('FPS: ' + core.fps.rate)
-	core.debug('Save and Restore Count: ' + draws)
+	core.debug('Draws: ' + draws)
 
 	while(draws--) {
 		drawImage(100, 100, images.imgLarge)
@@ -44,11 +44,10 @@ core.step = () => {
 		if(!settings.read('saveRestore')) return
 
 		core.ctx.save()
-		core.ctx.translate(translateX, translateY)
-		core.ctx.scale(scaleX, scaleY)
-		core.ctx.rotate(0)
+		// core.ctx.translate(translateX, translateY)
+		// core.ctx.scale(scaleX, scaleY)
+		// core.ctx.rotate(0)
       core.ctx.restore()
-
 	}
 }
 

@@ -1,5 +1,5 @@
 ## canvas performance experiments
-![example image](/example.png)
+![example image](/example.png?v=1)
 
 live: [view experiments](https://sean-codes.github.io/canvas-performance/index.html)
 
