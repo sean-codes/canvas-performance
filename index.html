@@ -1,26 +1,48 @@
 <html>
    <head>
       <!-- Styles -->
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="css.css">
+
+		<!-- Tools -->
+		<script src="tools/Core.js"></script>
+		<script src="tools/Settings.js"></script>
+
    </head>
    <body>
-      <!-- Main Canvas -->
-      <canvas></canvas>
 
-      <!-- Interface -->
-      <tests></tests>
-      <results></results>
-      
-      <!-- Load Images -->
-      <img data-name="small" src="images/imgSmall.png">
-      <img data-name="medium" src="images/imgMedium.png">
-      <img data-name="large" src="images/imgLarge.png">
+		<!-- interface -->
+		<container>
+			<canvas></canvas>
+			<settings></settings>
+			<experiments></experiments>
+		</container>
 
-      <!-- Core Javascript -->
-      <script src="settings.js"></script>
-      <script src="javascript.js"></script>
 
       <!-- Initialize -->
-      <script>init()</script>
+      <script>
+			var experiments = [
+				{ label: 'demo', path: '/experiments/demo.js'}
+			]
+
+			// Some interesting manuevering
+			document.body.onload = function() {
+				// Load the current script
+				var script = document.createElement('script')
+				script.src = window.location.hash.replace('#', '.')
+				document.body.appendChild(script)
+				// Load all the links
+				for( var experiment of experiments ) {
+					var button = document.createElement('button')
+					button.innerHTML = experiment.label
+					button.dataset.path = experiment.path
+					if(script.src.endsWith(experiment.path)) button.classList.add('active')
+					button.onclick = function() {
+							window.location.hash = this.dataset.path
+							window.location.reload()
+						}
+					document.querySelector('experiments').appendChild(button)
+				}
+			}
+		</script>
    </body>
 </html>
