@@ -1,6 +1,6 @@
 settings = new Settings()
-settings.add({ name: 'draws', min: 1, max: 100000, value: 100, step: 500 })
-settings.add({ name: 'saveRestore', min: 0, max: 1, value: 1, step: 1 })
+settings.add({ name: 'draws', min: 1, max: 100000, value: 4500, step: 500 })
+settings.add({ name: 'saveRestore', min: 0, max: 2, value: 0, step: 1 })
 settings.add({ name: 'translateX', min: 0, max: 100, value: 0, step: 1 })
 settings.add({ name: 'translateY', min: 0, max: 100, value: 0, step: 1 })
 settings.add({ name: 'scaleX', min: -1, max: 1, value: 1, step: 0.1 })
@@ -33,21 +33,41 @@ core.step = () => {
 
 	core.debug('FPS: ' + core.fps.rate)
 	core.debug('Draws: ' + draws)
+	var translateX = settings.read('translateX')
+	var translateY = settings.read('translateY')
+	var scaleX = settings.read('scaleX')
+	var scaleY = settings.read('scaleY')
+	var type = settings.read('saveRestore')
+
+	// this is pretty scrappy lol
+	core.debug('Type: ' + (!type ? 'none' : type == 1 ? 'save and restore' : 'move / undo'))
 
 	while(draws--) {
 		drawImage(100, 100, images.imgLarge)
 
-		var translateX = settings.read('translateX')
-		var translateY = settings.read('translateY')
-		var scaleX = settings.read('scaleX')
-		var scaleY = settings.read('scaleY')
-		if(!settings.read('saveRestore')) return
+		switch(type) {
+			case 0:
+				continue
+				break
 
-		core.ctx.save()
-		core.ctx.translate(translateX, translateY)
-		core.ctx.scale(scaleX, scaleY)
-		core.ctx.rotate(0)
-      core.ctx.restore()
+			case 1:
+				core.ctx.save()
+				core.ctx.translate(translateX, translateY)
+				core.ctx.scale(scaleX, scaleY)
+				core.ctx.rotate(0)
+				core.ctx.restore()
+				break
+
+			case 2:
+				if(scaleX && scaleY) core.ctx.scale(scaleX, scaleY)
+				core.ctx.translate(translateX, translateY)
+				core.ctx.rotate(0)
+
+				core.ctx.translate(-translateX, -translateY)
+				core.ctx.rotate(0)
+				if(scaleX && scaleY) core.ctx.scale(1/scaleX, 1/scaleY)
+				break
+		}
 	}
 }
 
