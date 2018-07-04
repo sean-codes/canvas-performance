@@ -1,3 +1,4 @@
+
 class Settings {
    constructor(settings = []){
       this.settings = {}
@@ -7,17 +8,13 @@ class Settings {
    }
 
    read(settingName) {
-      var setting = this.getSetting(settingName)
+      var setting = this.settings[settingName]
       setting.read = true
       return Number(setting.value)
    }
 
    changed(settingName) {
       return !this.getSetting(settingName).read
-   }
-
-   getSetting(settingName) {
-      return this.settings[settingName.toLowerCase()]
    }
 
    add(options) {
@@ -33,7 +30,7 @@ class Settings {
          this.onChange(setting)
       })
 
-      this.settings[options.name.toLowerCase()] = setting
+      this.settings[options.name] = setting
    }
 
    onChange(setting) {
