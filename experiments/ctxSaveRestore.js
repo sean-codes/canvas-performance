@@ -37,11 +37,11 @@ core.step = () => {
 	while(draws--) {
 		drawImage(100, 100, images.imgLarge)
 
-		if(!settings.read('saveRestore')) return
 		var translateX = settings.read('translateX')
 		var translateY = settings.read('translateY')
 		var scaleX = settings.read('scaleX')
 		var scaleY = settings.read('scaleY')
+		if(!settings.read('saveRestore')) return
 
 		core.ctx.save()
 		core.ctx.translate(translateX, translateY)

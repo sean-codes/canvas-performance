@@ -1,2 +1,2 @@
 # canvas-performance
-A few performance tests for javascript canvas
+a few performance tests for canvas
