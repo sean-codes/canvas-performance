@@ -1,7 +1,9 @@
 html, body {
 	background:#333;
 	padding: 0; margin:0;
-	height:100%;
+}
+body{
+	padding-top:20px;
 }
 
 container, container * {
@@ -13,8 +15,9 @@ container, container * {
 }
 
 container {
+	position:relative;
 	width:500px;
-	margin:20px auto;
+	margin:0px auto;
 }
 
 container canvas {
@@ -23,14 +26,58 @@ container canvas {
 	background:#545454;
 }
 
-container settings {
-
-}
-
 container experiments button {
 	padding: 8px 10px;
 	background:#FFF;
 	margin:10px 10px 10px 0px;
 	text-transform:uppercase;
 	font-weight:600;
+	display:inline-block;
+}
+
+
+container settings {
+   position:absolute;
+   bottom:0px;
+   right:-2px;
+   color:#dcd;
+   letter-spacing:1px;
+   background:rgba(0, 0, 0, 0.75);
+   border-radius:3px 0px 3px 0px;
+   font-size:8px;
+   -webkit-user-select:none;
+   user-select:none;
+   opacity:0.25;
+   transition:all 0.25s;
+   transition-delay:0.5s;
+   user-select:none;
+}
+container settings:hover{
+   opacity:1;
+}
+container settings setting{
+   text-align:right;
+   padding:2px 0px 0px 6px;
+}
+container settings setting:last-of-type{
+   padding-bottom:5px;
+}
+
+container settings setting value {
+   min-width:40px;
+   text-align:center;
+}
+
+container settings label, container settings input, container settings value {
+   display:inline-block;
+   position:relative;
+}
+
+container settings label {
+   margin-right:6px;
+}
+
+container settings input{
+   top:5px;
+   max-width:60px;
 }

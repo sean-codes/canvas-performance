@@ -1,5 +1,10 @@
 settings = new Settings()
-settings.add({ name: 'draws', min: 1, max: 15000, value: 100, step: 1 })
+settings.add({ name: 'draws', min: 1, max: 100000, value: 100, step: 500 })
+settings.add({ name: 'saveRestore', min: 0, max: 1, value: 1, step: 1 })
+settings.add({ name: 'translateX', min: 0, max: 100, value: 0, step: 1 })
+settings.add({ name: 'translateY', min: 0, max: 100, value: 0, step: 1 })
+settings.add({ name: 'scaleX', min: -1, max: 1, value: 1, step: 0.1 })
+settings.add({ name: 'scaleY', min: -1, max: 1, value: 1, step: 0.1 })
 
 var images = {
 	imgLarge: { src: 'images/imgLarge.png' },
@@ -27,14 +32,24 @@ core.step = () => {
 	var draws = settings.read('draws')
 
 	core.debug('FPS: ' + core.fps.rate)
-	core.debug('Image Draws: ' + draws)
+	core.debug('Save and Restore Count: ' + draws)
 
 	while(draws--) {
-		drawCircle(50, 50, 100)
-		drawImage(50, 50, images.imgLarge)
-		drawImage(200, 50, images.imgMedium)
-	}
+		drawImage(100, 100, images.imgLarge)
 
+		if(!settings.read('saveRestore')) return
+		var translateX = settings.read('translateX')
+		var translateY = settings.read('translateY')
+		var scaleX = settings.read('scaleX')
+		var scaleY = settings.read('scaleY')
+
+		core.ctx.save()
+		core.ctx.translate(translateX, translateY)
+		core.ctx.scale(scaleX, scaleY)
+		core.ctx.rotate(0)
+      core.ctx.restore()
+
+	}
 }
 
 
